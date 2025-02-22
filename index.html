@@ -22,11 +22,11 @@
             padding: 10px 20px;
             text-align: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: background-color 0.3s; /* 添加背景色过渡效果 */
+            transition: background-color 0.3s;
         }
 
         header:hover {
-            background-color: #333; /* 鼠标悬停时加深背景色 */
+            background-color: #333;
         }
 
         nav ul {
@@ -45,12 +45,12 @@
             text-decoration: none;
             padding: 5px 10px;
             border-radius: 5px;
-            transition: background-color 0.3s, color 0.3s; /* 添加背景色和文字颜色过渡效果 */
+            transition: background-color 0.3s, color 0.3s;
         }
 
         nav ul li a:hover {
             background-color: #444;
-            color: #fff; /* 鼠标悬停时保持文字颜色为白色 */
+            color: #fff;
         }
 
         /* 主要内容区域 */
@@ -60,27 +60,36 @@
             max-width: 800px;
             background-color: #fff;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: box-shadow 0.3s; /* 添加阴影过渡效果 */
+            transition: box-shadow 0.3s;
         }
 
         section:hover {
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* 鼠标悬停时加深阴影 */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
 
         /* 关于我部分 */
+        #about {
+            display: flex; /* 使用Flexbox布局 */
+            justify-content: space-between; /* 在主轴上均匀分布子项 */
+            align-items: center; /* 垂直居中对齐 */
+        }
+
         #about img {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            float: right;
-            margin-left: 20px;
+            margin-left: 20px; /* 在左侧添加边距 */
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            transition: transform 0.3s, box-shadow 0.3s; /* 添加变换和阴影过渡效果 */
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         #about img:hover {
-            transform: scale(1.1); /* 鼠标悬停时放大图片 */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.4); /* 鼠标悬停时加深阴影 */
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+        }
+
+        #about .text {
+            flex: 1; /* 让文本区域占据剩余空间 */
         }
 
         /* 项目部分 */
@@ -88,11 +97,11 @@
             margin-bottom: 30px;
             padding-bottom: 15px;
             border-bottom: 1px solid #eee;
-            transition: background-color 0.3s; /* 添加背景色过渡效果 */
+            transition: background-color 0.3s;
         }
 
         .project:hover {
-            background-color: #fcfcfc; /* 鼠标悬停时浅化背景色 */
+            background-color: #fcfcfc;
         }
 
         .project:last-child {
@@ -123,11 +132,11 @@
 
         #contact ul li {
             margin-bottom: 10px;
-            transition: color 0.3s; /* 添加文字颜色过渡效果 */
+            transition: color 0.3s;
         }
 
         #contact ul li:hover {
-            color: #222; /* 鼠标悬停时加深文字颜色 */
+            color: #222;
         }
 
         #contact a {
@@ -149,11 +158,11 @@
             padding: 10px 20px;
             text-align: center;
             margin-top: 20px;
-            transition: background-color 0.3s; /* 添加背景色过渡效果 */
+            transition: background-color 0.3s;
         }
 
         footer:hover {
-            background-color: #333; /* 鼠标悬停时加深背景色 */
+            background-color: #333;
         }
     </style>
 </head>
@@ -171,9 +180,11 @@
     </header>
 
     <section id="about">
-        <h2>关于我</h2>
-        <p> 硕士毕业于湖北工业大学机械工程学院仪器仪表工程专业，本科自动化专业.</p>
-            南京奥特佳新能源科技有限公司嵌入式软件工程师.</p>
+        <div class="text">
+            <h2>关于我</h2>
+            <p>硕士毕业于湖北工业大学机械工程学院仪器仪表工程专业，本科自动化专业.</p>
+	    <p>南京奥特佳新能源科技有限公司嵌入式软件开发工程师.</p>
+        </div>
         <img src="个人头像.jpg" alt="你的照片"> <!-- 替换为你的照片 -->
     </section>
 
