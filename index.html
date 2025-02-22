@@ -3,146 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>陆佩佩 | 动态个人主页</title>
+    <title>陆佩佩 | 个人主页</title>
     <style>
-        /* 优化后的星空背景样式 */
-        .hero {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1.5rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
             position: relative;
             overflow: hidden;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4CAF50;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* 增强首屏动画 */
+        .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            text-align: center;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .stars-bg {
-            background: #000;
             position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
         }
 
-        .stars {
+        .hero::before {
+            content: '';
             position: absolute;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
+            width: 400%;
+            height: 400%;
+            background: 
+                repeating-linear-gradient(45deg, 
+                    rgba(46, 204, 113, 0.1) 0px,
+                    rgba(46, 204, 113, 0.1) 2px,
+                    transparent 2px,
+                    transparent 6px),
+                repeating-linear-gradient(-45deg, 
+                    rgba(79, 172, 254, 0.08) 0px,
+                    rgba(79, 172, 254, 0.08) 2px,
+                    transparent 2px,
+                    transparent 6px);
+            animation: bgMove 15s linear infinite;
         }
 
-        .star {
+        @keyframes bgMove {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .hero::after {
+            content: '';
             position: absolute;
-            background: #fff;
-            border-radius: 50%;
-            animation: twinkle 1.5s infinite;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle at center, 
+                rgba(0, 242, 254, 0.15) 0%,
+                rgba(0, 242, 254, 0) 70%);
+            transform: translate(-50%, -50%);
             pointer-events: none;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
-
-        /* 优化原有样式 */
-        * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
-            font-family: 'Segoe UI', sans-serif; 
-        }
-
-        .navbar { 
-            background: rgba(0,0,0,0.9); 
-            padding: 1.5rem; 
-            position: fixed; 
-            width: 100%; 
-            z-index: 1000; 
-        }
-
-        .nav-links { 
-            display: flex; 
-            justify-content: center; 
-            gap: 2rem; 
-            list-style: none; 
-        }
-
-        .nav-links a { 
-            color: white; 
-            text-decoration: none; 
-            font-size: 1.1rem; 
-            transition: color 0.3s; 
-        }
-
-        .nav-links a:hover { 
-            color: #4CAF50; 
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
 
-        .hero-content h1 { 
-            font-size: 3.5rem; 
-            margin-bottom: 1rem; 
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #fff, #4facfe 70%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: titleGlow 1s ease-in-out infinite alternate;
+            will-change: transform;
         }
 
-        .section { 
-            padding: 5rem 2rem; 
-            max-width: 1200px; 
-            margin: 0 auto; 
+        @keyframes titleGlow {
+            0% { 
+                text-shadow: 0 0 15px rgba(79, 172, 254, 0.5);
+                transform: scale(1);
+            }
+            100% { 
+                text-shadow: 0 0 30px rgba(79, 172, 254, 0.8);
+                transform: scale(1.02);
+            }
+        }
+
+        /* 粒子动画 */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(79, 172, 254, 0.6);
+            border-radius: 50%;
+            animation: particleMove 4s infinite linear;
+            backface-visibility: hidden;
+        }
+
+        @keyframes particleMove {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100vw);
+                opacity: 0;
+            }
+        }
+
+        /* 芯片装饰 */
+        .chip-decoration {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: 1;
+            animation: chipFloat 6s ease-in-out infinite;
+        }
+
+        .chip-left {
+            left: 10%;
+            bottom: 20%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='20' y='20' width='60' height='60' fill='none' stroke='%234CAF50' stroke-width='2'/%3E%3C/svg%3E");
+        }
+
+        .chip-right {
+            right: 10%;
+            top: 20%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30,30 L70,30 M30,50 L70,50 M30,70 L70,70' stroke='%234facfe' stroke-width='3'/%3E%3C/svg%3E");
+        }
+
+        @keyframes chipFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* 内容区域 */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
             position: relative;
             z-index: 2;
-            background: rgba(255,255,255,0.95);
         }
 
-        .about-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 2fr; 
-            gap: 2rem; 
-            align-items: center; 
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
         }
 
-        .avatar { 
-            width: 100%; 
-            border-radius: 50%; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
+        .avatar {
+            width: 100%;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
         }
 
-        .skills { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            gap: 1.5rem; 
-            margin-top: 2rem; 
+        .avatar:hover {
+            transform: rotate(5deg) scale(1.05);
         }
 
-        .skill-card { 
-            background: white; 
-            padding: 2rem; 
-            border-radius: 10px; 
-            box-shadow: 0 3px 6px rgba(0,0,0,0.1); 
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
 
-        .contact-form { 
-            max-width: 600px; 
-            margin: 0 auto; 
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        input, textarea { 
-            width: 100%; 
-            padding: 0.8rem; 
-            margin: 0.5rem 0; 
-            border: 1px solid #ddd; 
-            border-radius: 4px; 
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
 
-        button { 
-            background: #4CAF50; 
-            color: white; 
-            padding: 1rem 2rem; 
-            border: none; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            transition: background 0.3s; 
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero::before {
+                animation-duration: 40s;
+            }
+            
+            .chip-decoration {
+                display: none;
+            }
+            
+            .particle {
+                animation-duration: 6s !important;
+            }
         }
     </style>
 </head>
@@ -152,12 +304,16 @@
             <li><a href="#home">首页</a></li>
             <li><a href="#about">关于我</a></li>
             <li><a href="#skills">专业技能</a></li>
-            <li><a href="#projects">项目经历</a></li>
+            <li><a href="#project">项目经历</a></li>
             <li><a href="#contact">联系</a></li>
         </ul>
     </nav>
 
-    <section class="hero stars-bg" id="home">
+    <section class="hero" id="home">
+        <div class="particles"></div>
+        <div class="chip-decoration chip-left"></div>
+        <div class="chip-decoration chip-right"></div>
+        
         <div class="hero-content">
             <h1>陆佩佩</h1>
             <p>嵌入式软件工程师 | 技术博客作者</p>
@@ -180,31 +336,28 @@
             <div class="skill-card">
                 <h3>嵌入式软件开发</h3>
                 <p>
-                    熟悉C/C++开发，掌握C语言指针及内存管理，熟悉C++面向对象编程，熟悉使用STL容器<br>
-                    了解ARM体系架构，熟悉使用STM32、AURIX_TC275进行软硬件开发<br>
-                    熟悉UART、IIC、SPI、CAN等协议<br>
-                    熟悉Linux、FreeRTOS操作系统，了解进程、线程间管理及通信，熟悉多线程应用开发<br>
-                    熟悉基于Ubuntu、QT的C++开发<br>
-                    熟悉使用git管理代码，使用gcc、g++交叉编译，能够使用gdb进行简单调试<br>
+熟悉C/C++开发，掌握C语言指针及内存管理，熟悉C++面向对象编程，熟悉使用STL容器<br>
+了解ARM体系架构，熟悉使用STM32、AURIX_TC275进行软硬件开发<br>
+熟悉UART、IIC、SPI、CAN等协议<br>
+熟悉Linux、FreeRTOS操作系统，了解进程、线程间管理及通信，熟悉多线程应用开发<br>
+熟悉基于Ubuntu、QT的C++开发<br>
+熟悉使用git管理代码，使用gcc、g++交叉编译，能够使用gdb进行简单调试<br>
                 </p>
             </div>
         </div>
     </section>
 
-    <section class="section" id="projects">
+    <section class="section" id="project">
         <h2>项目经历</h2>
         <div class="skills">
             <div class="skill-card">
                 <h3>2022.10-2023.06 集成式电子驻车机构及其控制技术研究</h3>
-                <p>
-                    项目简介：P挡电子驻车机构系统开发。与东风汽车某子公司合作开发PCU，使用英飞凌TC275单片机为主控，接收VCU或上位机的指令完成驻车、解锁等动作，同时处理并反馈整车所需信号。<br>
-                    个人负责：主要负责PCU项目的上位机开发，基于QT使用C++完成了USB-CAN操作模块、报文数据解析及分析模块、自动化测试模块的开发，并在台架上对PCU进行自动化的可靠性测试。
-                </p>
+                <p>项目简介：P挡电子驻车机构系统开发。与东风汽车某子公司合作开发PCU...<br>
+                个人负责：主要负责PCU项目的上位机开发...</p>
+
                 <h3>2023.09-2024.07 特种新型烟草滤棒多点温度测量仪器开发</h3>
-                <p>
-                    项目简介：设计并实现一种基于交流激励技术的高精度多点温度测量系统。与湖北中烟某公司合作开发烟草滤棒温度测量仪器，系统实现实时准确地监测卷烟滤嘴尖端的温度变化。<br>
-                    参与工作：驱动电机完成ISO与HCL两种抽吸模式下的软件设计，SPI、USART通讯协议内容制定。绘制电路原理图及PCB布局。使用DGUS tool完成开机交互界面设计，产品物料选型购买，整机组装焊接调试。
-                </p>
+                <p>项目简介：设计并实现一种基于交流激励技术的高精度多点温度测量系统...<br>
+                参与工作：驱动电机完成ISO与HCL两种抽吸模式下的软件设计...</p>
             </div>
         </div>
     </section>
@@ -212,51 +365,39 @@
     <section class="section" id="contact">
         <h2>联系我</h2>
         <form class="contact-form">
-            <input type="text" placeholder="姓名">
-            <input type="email" placeholder="邮箱">
-            <textarea rows="5" placeholder="留言内容"></textarea>
+            <input type="text" placeholder="姓名" required>
+            <input type="email" placeholder="邮箱" required>
+            <textarea rows="5" placeholder="留言内容" required></textarea>
             <button type="submit">发送信息</button>
         </form>
     </section>
 
     <script>
-        // 优化后的星空生成器
-        function createStars() {
-            const container = document.createElement('div');
-            container.className = 'stars';
-            
-            // 生成300颗星星
-            for(let i = 0; i < 300; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.width = star.style.height = Math.random() * 3 + 'px';
-                star.style.animationDuration = (Math.random() * 2 + 1) + 's'; // 1-3秒动画
-                star.style.animationDelay = Math.random() * 5 + 's'; // 随机延迟
-                container.appendChild(star);
+        // 生成粒子动画
+        function createParticles() {
+            const container = document.querySelector('.particles');
+            for(let i = 0; i < 25; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.cssText = `
+                    width: ${Math.random()*3 + 2}px;
+                    height: ${Math.random()*3 + 2}px;
+                    left: ${Math.random()*100}%;
+                    animation-delay: ${Math.random()*4}s;
+                    animation-duration: ${Math.random()*3 + 3}s;
+                `;
+                container.appendChild(particle);
             }
-            document.querySelector('.hero').appendChild(container);
+        }
+        
+        // 移动端优化
+        if (/Android|webOS|iPhone|iPad/i.test(navigator.userAgent)) {
+            document.querySelectorAll('.particle').forEach(p => {
+                p.style.animationDuration = '6s';
+            });
         }
 
-        // 初始化
-        window.addEventListener('DOMContentLoaded', () => {
-            createStars();
-            
-            // 修复导航栏跳转位置
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        window.scrollTo({
-                            top: target.offsetTop - 80, // 减去导航栏高度
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-        });
+        createParticles();
     </script>
 </body>
 </html>
