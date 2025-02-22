@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陆佩佩 | 个人主页</title>
+    <style>
+        /* 基础样式参考并优化 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        /* 导航栏样式参考 */
+        .navbar {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 1.5rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #4CAF50;
+        }
+
+        /* 首屏设计参考 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* 内容区域参考 */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .avatar {
+            width: 100%;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* 技能展示参考 */
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        /* 联系表单参考 */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#home">首页</a></li>
+            <li><a href="#about">关于我</a></li>
+            <li><a href="#skills">专业技能</a></li>
+            <li><a href="#contact">项目经历</a></li>
+	    <li><a href="#contact">联系</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>陆佩佩</h1>
+            <p>嵌入式软件工程师 | 技术博客作者</p>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="about-grid">
+            <img src="个人头像.jpg" alt="个人头像" class="avatar">
+            <div>
+                <h2>关于我</h2>
+                <p>硕士毕业于湖北工业大学，南京奥特佳新能源科技有限公司员工，热衷于嵌入式开发...</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="skills">
+        <h2>专业技能</h2>
+        <div class="skills">
+            <div class="skill-card">
+                <h3>嵌入式软件开发</h3>
+                <p>
+熟悉C/C++开发，掌握C语言指针及内存管理，熟悉C++面向对象编程，熟悉使用STL容器<br>
+了解ARM体系架构，熟悉使用STM32、AURIX_TC275进行软硬件开发<br>
+熟悉UART、IIC、SPI、CAN等协议<br>
+熟悉Linux、FreeRTOS操作系统，了解进程、线程间管理及通信，熟悉多线程应用开发<br>
+熟悉基于Ubuntu、QT的C++开发<br>
+熟悉使用git管理代码，使用gcc、g++交叉编译，能够使用gdb进行简单调试<br>
+</p>
+            </div>
+            <!-- 添加更多技能卡片 -->
+        </div>
+    </section>
+
+    <section class="section" id="skills">
+  <h2>项目经历</h2>
+        <div class="skills">
+            <div class="skill-card">
+                <h3>2022.10-2023.06                     集成式电子驻车机构及其控制技术研究</h3>
+                <p>
+             
+项目简介：P挡电子驻车机构系统开发。与东风汽车某子公司合作开发PCU，使用英飞凌TC275单片机为主控，接收VCU或上位机的指令完成驻车、解锁等动作，同时处理并反馈整车所需信号。<br>
+个人负责：主要负责PCU项目的上位机开发，基于QT使用C++完成了USB-CAN操作模块、报文数据解析及分析模块、自动化测试模块的开发，并在台架上对PCU进行自动化的可靠性测试。<br>
+
+<h3>2023.09-2024.07                     特种新型烟草滤棒多点温度测量仪器开发               </h3>               
+项目简介：设计并实现一种基于交流激励技术的高精度多点温度测量系统。与湖北中烟某公司合作开发烟草滤棒温度测量仪器，系统实现实时准确地监测卷烟滤嘴尖端的温度变化。<br>
+参与工作：驱动电机完成ISO与HCL两种抽吸模式下的软件设计，SPI、USART通讯协议内容制定。绘制电路原理图及PCB布局。使用DGUS tool完成开机交互界面设计，产品物料选型购买，整机组装焊接调试。<br>
+</p>
+            </div>
+            <!-- 添加更多技能卡片 -->
+        </div>
+    </section>
+
+
+    <section class="section" id="contact">
+        <h2>联系我</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="姓名">
+            <input type="email" placeholder="邮箱">
+            <textarea rows="5" placeholder="留言内容"></textarea>
+            <button type="submit">发送信息</button>
+        </form>
+    </section>
+</body>
+</html>
